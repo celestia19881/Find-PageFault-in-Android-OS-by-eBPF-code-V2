@@ -5,6 +5,7 @@
 - cd libbpf-bootstrap/examples/c
 
 2. 记得换源，推荐阿里云源，不然会很慢
+
 deb http://mirrors.aliyun.com/ubuntu/ jammy main restricted universe multiverse
 deb http://mirrors.aliyun.com/ubuntu/ jammy-security main restricted universe multiverse
 deb http://mirrors.aliyun.com/ubuntu/ jammy-updates main restricted universe multiverse
@@ -120,7 +121,12 @@ mount -t debugfs debugfs /sys/kernel/debug
 3. 使用 per-CPU 缓冲区：避免栈溢出问题
 4. 逐层构建路径：从根目录到文件名，逐个添加路径组件
 关键改进
+
 ✅ 无 bpf_d_path() 依赖 - 适用于旧内核
+
 ✅ 无复杂循环 - 满足 eBPF 验证器要求
+
 ✅ 无栈溢出 - 使用 per-CPU map 存储临时数据
+
 ✅ 路径深度限制 - 最多支持 5 层目录（对大多数场景足够）
+
